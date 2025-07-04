@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword, setPersistence, browserSessionPersistence, browserLocalPersistence } from 'firebase/auth';
 import '../Login.css';
+import logo from '../assets/Task_7682639_35712196.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -20,10 +21,7 @@ function Login() {
     try {
       const persistence = rememberMe ? browserLocalPersistence : browserSessionPersistence;
       await setPersistence(auth, persistence);
-      
       await signInWithEmailAndPassword(auth, email, password);
-      
-      // Show spinner in button for 3 seconds before navigating
       setTimeout(() => {
         setIsLoading(false);
         navigate('/dashboard');
@@ -44,6 +42,8 @@ function Login() {
         case 'auth/too-many-requests':
           errorMessage = 'Too many attempts. Please try again later.';
           break;
+        default:
+          errorMessage = 'An unexpected error occurred.';
       }
       setError(errorMessage);
     }
@@ -54,8 +54,9 @@ function Login() {
       <div className="login-container">
         <div className="image-container"></div>
         <div className="form-container">
-          <h2>Smart Home RO Purifier</h2>
-          <form onSubmit={handleSubmit}>
+          <img src={logo} alt="Olive-IoT Logo" className="company-logo" />
+          <h2> RO-Aqua-Monitoring</h2>
+          <div className="form-wrapper">
             <div className="form-group">
               <label htmlFor="email">Username or Email</label>
               <input
@@ -88,14 +89,18 @@ function Login() {
               <label htmlFor="remember">Remember Me</label>
             </div>
             <button
-              type="submit"
+              type="button"
+              onClick={handleSubmit}
               className={`login-button ${isLoading ? 'loading' : ''}`}
               disabled={isLoading}
             >
               <span>{isLoading ? 'Logging in...' : 'Login'}</span>
             </button>
-          </form>
-          {error && <p className="error-message">{error}</p>}
+            {error && <p className="error-message">{error}</p>}
+          </div>
+          <footer>
+            Copyright © 2025 Olive-IoT. All Rights Reserved.
+          </footer>
         </div>
       </div>
     </div>
