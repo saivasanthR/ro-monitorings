@@ -113,7 +113,7 @@ function Header({ activePage }) {
       {/* Left Section: Title */}
       <div className="header-left">
         <h2>
-          <i className={`fas fa-${pageIcons[activePage]}`}></i> Smart Home RO Purifier {pageTitles[activePage]}
+          <i className={`fas fa-${pageIcons[activePage]}`}></i> Aqua-{pageTitles[activePage]}
         </h2>
       </div>
 
