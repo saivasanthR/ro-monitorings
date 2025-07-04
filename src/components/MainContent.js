@@ -31,6 +31,9 @@ function MainContent({ activePage }) {
       <div id={`${activePage.toLowerCase()}-content`} className="content-page">
         {renderContent()}
       </div>
+      <footer style={{ textAlign: 'center', padding: '1rem', color: '#00008B', fontFamily: 'Arial, sans-serif', fontSize: '0.9rem'  }}>
+        <h3>Copyright © 2025 Olive-IoT. All Rights Reserved.</h3>
+      </footer>
     </div>
   );
 }
