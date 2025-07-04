@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase'; // Import from your firebase.js
 import { signOut } from 'firebase/auth';
@@ -33,15 +32,19 @@ function Sidebar({ isCollapsed, toggleSidebar, showContent, activePage }) {
 
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`} id="sidebar">
-      <div className="sidebar-header">
-        <div className="logo">
-          <i className="fas fa-tint" id="drop"></i>
-          {!isCollapsed && <h2>AquaMonitor</h2>}
-        </div>
+      <div className="logo-toggle-container">
+        {!isCollapsed && (
+          <img
+            src={require('../assets/Task_7682639_35712196.png')}
+            alt="Olive IoT Logo"
+            className="sidebar-logo"
+          />
+        )}
         <button className="toggle-btn" onClick={toggleSidebar} aria-label="Toggle Sidebar">
           <i className="fas fa-bars"></i>
         </button>
       </div>
+      
       <ul className="nav-links">
         {navItems.map((item) => (
           <li
@@ -58,6 +61,13 @@ function Sidebar({ isCollapsed, toggleSidebar, showContent, activePage }) {
         ))}
       </ul>
       <div className="user-section">
+        <div className="sidebar-header">
+        <div className="logo">
+          <i className="fas fa-tint" id="drop"></i>
+          {!isCollapsed && <h2>Aqua-Monitor</h2>}
+        </div>
+      </div>
+
         <div className="user-profile">
           <div className="user-avatar">
             <i className="fas fa-user"></i>
@@ -78,4 +88,4 @@ function Sidebar({ isCollapsed, toggleSidebar, showContent, activePage }) {
   );
 }
 
-export default Sidebar;
+export default Sidebar; 
